@@ -25,25 +25,51 @@ p {
     text-align: center;
 }
 
-.container{
-    display:flex;
-    justify-content: center;
-   
-}
+
 .maindiv {
     background-color: grey;
     width: 500px;
-    height: 500px;
-    display:flex;
-    justify-content: center;
+    height: 500px;    
     border:2px solid black;
-    border-radius: 10%;
- 
+    border-radius: 5%;
+    margin: auto auto;
+    padding:20px;
 }
 .form{
     padding-top: 5px;
+    padding-bottom: 5px;
+}
+.atividades{
+    width: auto;
+    height: 20px;
+   
+}
+.atividade{
+    display: Flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: yellowgreen;
+    margin:5px
+   
+}
+.botaoAtividade{
+    width: 45px;
 }
 
-.atividade{
+.mainForm {
+    display:flex;
+    justify-content: center;
+}
+#input1:focus {
+    outline: none;
     
+}
+#input1 {
+    border: 2px solid black;
+    border-radius: 10%;
+
+}
+#input2 {
+    border: 1px solid black;
+    padding: 3px 3px;
 }
