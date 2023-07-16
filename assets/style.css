@@ -27,7 +27,7 @@ p {
 
 
 .maindiv {
-    background-color: grey;
+    background: linear-gradient(#6b6ba1,#a2b5e1);
     width: 500px;
     height: 500px;    
     border:2px solid black;
@@ -42,18 +42,29 @@ p {
 .atividades{
     width: auto;
     height: 20px;
+
    
 }
 .atividade{
     display: Flex;
     justify-content: space-between;
     align-items: center;
-    background-color: yellowgreen;
-    margin:5px
+    background-color: #d1daf0;
+    border: 2px solid black;
+    margin:5px;
+    height: 30px;
+    padding: 0 5px;
+    border-radius: 10px;
+    box-shadow:0 2px 3px 0;
    
 }
 .botaoAtividade{
-    width: 45px;
+    width: 32px;
+    background-color: #ed4b52;
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    
 }
 
 .mainForm {
