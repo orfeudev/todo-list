@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="C:\Users\orfeu\Desktop\todolist\assets\style.css">
+    <link rel="stylesheet" type="text/css" href="assets\style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>home.html</title>
 
@@ -18,30 +18,84 @@
         <h1 class="titulo">To-do List</h1>    
         <div class="mainForm">
             <form class="form">
-                <input type="text" id="input1"> 
-                <input type="submit" value="Enviar" id="input2">
+                <input type="text" id="inputField"> 
+                <input type="submit" value="Enviar" id="submitButton">
             </form>
         </div>
         
-            <div class="maindiv">
-                <div class="atividades">
-                    <div class="atividade">
-                        <p>lorem ipsem</p>
-                        <button class="botaoAtividade"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="atividade">
-                        <p>lorem ipsem</p>
-                        <button class="botaoAtividade"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="atividade">
-                        <p>lorem ipsem</p>
-                        <button class="botaoAtividade"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <!-- atividade a ser introduzida -->
-                    
-                </div>
-               
-            </div>
+        <div class="maindiv">
+            <div class="atividades" id="atividades"></div>
+            
+        </div>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', function () {
+                let list = [];
+                const inputField = document.getElementById('inputField');
+                const submitButton = document.getElementById('submitButton');
+                const itemList = document.getElementById('atividades');
+        
+                submitButton.addEventListener('click', function () {
+                    createNewItem(inputField.value);
+                });
+        
+                inputField.addEventListener('keyup', function (event) {
+                    if (event.key === 'Enter') {
+                        createNewItem(inputField.value);
+                    }
+                });
+        
+                function createNewItem(itemName) {
+                    list.push({ name: itemName });
+                    saveListToLocalStorage();
+                    renderList();
+                    console.log(list);
+                }
+        
+                function deleteItem(item) {
+                    const index = list.indexOf(item);
+                    if (index > -1) {
+                        list.splice(index, 1);
+                        saveListToLocalStorage();
+                        renderList();
+                        console.log(list);
+                    }
+                }
+        
+                function saveListToLocalStorage() {
+                    localStorage.setItem('list', JSON.stringify(list));
+                }
+        
+                function loadListFromLocalStorage() {
+                    const storedList = localStorage.getItem('list');
+                    if (storedList) {
+                        list = JSON.parse(storedList);
+                    }
+                }
+        
+                function renderList() {
+                    itemList.innerHTML = '';
+                    list.forEach(function (item) {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'atividade';
+                        const itemNameSpan = document.createElement('span');
+                        itemNameSpan.textContent = item.name;
+                        const deleteButton = document.createElement('button');
+                        deleteButton.className = 'botaoAtividade';
+                        deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                        deleteButton.addEventListener('click', function () {
+                            deleteItem(item);
+                        });
+                        itemDiv.appendChild(itemNameSpan);
+                        itemDiv.appendChild(deleteButton);
+                        itemList.appendChild(itemDiv);
+                    });
+                }
+        
+                loadListFromLocalStorage();
+                renderList();
+            });
+        </script>
         
     </main>
     <footer>
