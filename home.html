@@ -29,29 +29,40 @@
         </div>
 
         <script>
+
+            // use addEventListener to update the DOM when new item added
             window.addEventListener('DOMContentLoaded', function () {
+
+                // setup variables
                 let list = [];
                 const inputField = document.getElementById('inputField');
                 const submitButton = document.getElementById('submitButton');
                 const itemList = document.getElementById('atividades');
         
+                // create item when submitButton gets a click and store any data on inputField.
                 submitButton.addEventListener('click', function () {
                     createNewItem(inputField.value);
                 });
-        
+                
+                // create item when enter key is pressed and store any data on inputField.
                 inputField.addEventListener('keyup', function (event) {
                     if (event.key === 'Enter') {
                         createNewItem(inputField.value);
                     }
                 });
-        
+                
+                // this function pushes the new item inside the list array,
+                // save to localStorage and reload the DOM.
                 function createNewItem(itemName) {
                     list.push({ name: itemName });
                     saveListToLocalStorage();
                     renderList();
                     console.log(list);
                 }
-        
+                
+                // this function deletes the item, locates by it's index,
+                // remove using splice, saves the new array on the localStorage
+                // and reload the DOM.
                 function deleteItem(item) {
                     const index = list.indexOf(item);
                     if (index > -1) {
@@ -61,18 +72,30 @@
                         console.log(list);
                     }
                 }
-        
+                
+                // this function just saves use simplify the process of
+                // saving the new item to the localStorage using
+                // JSON.stringify function to make sure it saves as json object.
                 function saveListToLocalStorage() {
                     localStorage.setItem('list', JSON.stringify(list));
                 }
-        
+                
+                // this function fetches all items on the list, pretty much the
+                // whole json object, it uses JSON.parse function to parse each
+                // item on the array so it's easier to use it on the DOM render function;
                 function loadListFromLocalStorage() {
                     const storedList = localStorage.getItem('list');
                     if (storedList) {
                         list = JSON.parse(storedList);
                     }
                 }
-        
+                
+
+                // Pretty complex function, in short, it just creates a new div
+                // when a new item is created, it interate through the list variable
+                // and create a new div with 'atividade' class and a buttom that
+                // accept the item id as parameter, which is determinated
+                // by it's index value on the array list.
                 function renderList() {
                     itemList.innerHTML = '';
                     list.forEach(function (item) {
@@ -91,7 +114,9 @@
                         itemList.appendChild(itemDiv);
                     });
                 }
-        
+                
+                // loads from the localStorage all items saved and 
+                // render on DOM.
                 loadListFromLocalStorage();
                 renderList();
             });
