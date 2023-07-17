@@ -8,28 +8,23 @@
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>home.html</title>
-
 </head>
 <body>
     <header>
-
+        <h1 class="titulo">To-do List</h1>    
     </header>
     <main>
-        <h1 class="titulo">To-do List</h1>    
         <div class="mainForm">
             <form class="form">
                 <input type="text" id="inputField"> 
                 <input type="submit" value="Enviar" id="submitButton">
             </form>
         </div>
-        
-        <div class="maindiv">
+        <div class="container">
             <div class="atividades" id="atividades"></div>
-            
         </div>
 
         <script>
-
             // use addEventListener to update the DOM when new item added
             window.addEventListener('DOMContentLoaded', function () {
 
@@ -124,7 +119,7 @@
         
     </main>
     <footer>
-
+        <!-- to do -->
     </footer>
 </body>
 </html>
