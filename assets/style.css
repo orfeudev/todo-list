@@ -75,10 +75,17 @@ body {
     border-radius: 8px;
     
 }
-.editButton{
-    color: #fff;
-    width: 32px;
+span {
+    width: 550px;
 }
+
+.editButton {
+    width: 28px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
 .mainForm {
     display:flex;
     justify-content: center;

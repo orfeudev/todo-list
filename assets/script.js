@@ -37,7 +37,6 @@ window.addEventListener("DOMContentLoaded", function (){
             var itemDiv = document.createElement("div");
             var textDiv = document.createElement("span");
             var buttonDiv = document.createElement("button");
-            
 
             itemDiv.className = "atividade";
             textDiv.textContent = item.value;
@@ -49,8 +48,8 @@ window.addEventListener("DOMContentLoaded", function (){
 
             // Adiciona o botão "Editar" para cada item
             var editButton = document.createElement("button");
-            editButton.textContent = "Editar";
-            editButton.className = "botaoAtividade";
+            editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
+            editButton.className = "editButton"; 
             editButton.addEventListener("click", function () {
                 var newValue = prompt("Digite o novo valor:", item.value);
                 if (newValue !== null) {
@@ -59,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function (){
             });
 
             itemDiv.appendChild(textDiv);
-            itemDiv.appendChild(editButton); // edição do item
+            itemDiv.appendChild(editButton); // Adiciona o botão de edição ao item
             itemDiv.appendChild(buttonDiv);
             atvList.appendChild(itemDiv);
         });
