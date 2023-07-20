@@ -1,10 +1,11 @@
 //propriedade do navegador que representa a página.
 window.addEventListener("DOMContentLoaded", function (){
-    var list = [] //vazia pois todo dado recebido vai ser armazenado aqui
-    var inputField = document.getElementById("input1")
-    var submitButton = document.getElementById("input2")
-    var atvList = document.getElementById("lista-atividades")
+    var list = [] //cria uma matriz(lista de itens ordenados)
+    var inputField = document.getElementById("input1") //campo para inserção de terxto do usuário
+    var submitButton = document.getElementById("input2")// botão para enviar o valor digitado no inputField
+    var atvList = document.getElementById("lista-atividades")//exibição das atividades
 
+    //
     function create(item) {
         list.push({value: item})
         localStorage.setItem("list",JSON.stringify(list))
@@ -37,6 +38,7 @@ window.addEventListener("DOMContentLoaded", function (){
             var itemDiv = document.createElement("div");
             var textDiv = document.createElement("span");
             var buttonDiv = document.createElement("button");
+            var editButton = document.createElement("button");
 
             itemDiv.className = "atividade";
             textDiv.textContent = item.value;
@@ -46,8 +48,8 @@ window.addEventListener("DOMContentLoaded", function (){
                 del(item);
             });
 
-            // Adiciona o botão "Editar" para cada item
-            var editButton = document.createElement("button");
+            // editBUtton
+          
             editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
             editButton.className = "editButton"; 
             editButton.addEventListener("click", function () {
@@ -58,7 +60,7 @@ window.addEventListener("DOMContentLoaded", function (){
             });
 
             itemDiv.appendChild(textDiv);
-            itemDiv.appendChild(editButton); // Adiciona o botão de edição ao item
+            itemDiv.appendChild(editButton); // editButton
             itemDiv.appendChild(buttonDiv);
             atvList.appendChild(itemDiv);
         });
