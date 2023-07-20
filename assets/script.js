@@ -13,6 +13,15 @@ window.addEventListener("DOMContentLoaded", function (){
     submitButton.addEventListener("click", function(){
         create(inputField.value)
     })
+
+    function update(item, newValue) {
+        var index = list.indexOf(item);
+        if (index > -1) {
+            list[index].value = newValue;
+            localStorage.setItem("list", JSON.stringify(list));
+            render();
+        }
+    }
     function del(item){
         var index = list.indexOf(item)
         if(index>-1){
@@ -21,25 +30,39 @@ window.addEventListener("DOMContentLoaded", function (){
             render()
         }
     }
-    function render(){
-        atvList.innerHTML=''
-        list.forEach(function(item) {
-            var itemDiv = document.createElement("div")
-            var textDiv = document.createElement("span")
-            var buttonDiv = document.createElement("button")
 
-            itemDiv.className = "atividade"
-            textDiv.textContent = item.value
-            buttonDiv.className = "botaoAtividade"
-            buttonDiv.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-            buttonDiv.addEventListener("click", function(){
-                del(item)
-            }) 
+    function render() {
+        atvList.innerHTML = '';
+        list.forEach(function (item) {
+            var itemDiv = document.createElement("div");
+            var textDiv = document.createElement("span");
+            var buttonDiv = document.createElement("button");
             
-            itemDiv.appendChild(textDiv)
-            itemDiv.appendChild(buttonDiv)
-            atvList.appendChild(itemDiv)
-        })
+
+            itemDiv.className = "atividade";
+            textDiv.textContent = item.value;
+            buttonDiv.className = "botaoAtividade";
+            buttonDiv.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            buttonDiv.addEventListener("click", function () {
+                del(item);
+            });
+
+            // Adiciona o botão "Editar" para cada item
+            var editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.className = "botaoAtividade";
+            editButton.addEventListener("click", function () {
+                var newValue = prompt("Digite o novo valor:", item.value);
+                if (newValue !== null) {
+                    update(item, newValue);
+                }
+            });
+
+            itemDiv.appendChild(textDiv);
+            itemDiv.appendChild(editButton); // edição do item
+            itemDiv.appendChild(buttonDiv);
+            atvList.appendChild(itemDiv);
+        });
     }
     function load(){
         var storedList = localStorage.getItem("list")

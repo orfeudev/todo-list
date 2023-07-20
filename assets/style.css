@@ -75,7 +75,10 @@ body {
     border-radius: 8px;
     
 }
-
+.editButton{
+    color: #fff;
+    width: 32px;
+}
 .mainForm {
     display:flex;
     justify-content: center;
